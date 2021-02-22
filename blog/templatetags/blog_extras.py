@@ -1,0 +1,49 @@
+from django import template
+from ..models import Post, Category, Tag, visitCount
+
+register = template.Library()
+
+@register.inclusion_tag("blog/inclusions/_recent_posts.html", takes_context=True)
+def show_recent_posts(context, num=5):
+    # request = context.get("request")
+    
+    return {
+        'recent_post_list': Post.objects.all().order_by('-created_time')[:num],
+        
+    }
+
+@register.inclusion_tag("blog/inclusions/_archives.html", takes_context=True)
+def show_archives(context):
+    # request = context.get("request")
+    
+    return {
+        'date_list': Post.objects.dates('created_time', 'month', order='DESC')
+        
+    }
+
+@register.inclusion_tag("blog/inclusions/_categories.html", takes_context=True)
+def show_categories(context):
+    # request = context.get("request")
+    
+    return {
+        'category_list': Category.objects.all(),
+        
+    }
+
+@register.inclusion_tag('blog/inclusions/_tags.html', takes_context=True)
+def show_tags(context):
+    return {
+        'tag_list': Tag.objects.all(),
+    }
+
+@register.inclusion_tag('blog/inclusions/_indexCount.html', takes_context=True)
+def get_counts(context):
+    # request = context.get("request")
+    
+    return {
+        'count': visitCount.objects.get(id=1),
+        
+    }
+
+
+
