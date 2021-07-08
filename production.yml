@@ -1,0 +1,44 @@
+version: '3'
+
+volumes:
+  static:
+  database:
+  postgres_data:
+
+services:
+  db:
+    image: postgres:10.1-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  mysite:
+    build:
+      context: .
+      dockerfile: compose/production/django/Dockerfile
+    image: mysite
+    container_name: mysite
+    working_dir: /app
+    volumes:
+      - database:/app/database
+      - static:/app/static
+    env_file:
+      - .envs/.production
+    ports:
+      - "8000:8000"
+    command: /start.sh
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: .
+      dockerfile: compose/production/nginx/Dockerfile
+    image: mysite_nginx
+    container_name: mysite_nginx
+    volumes:
+      - static:/apps/mysite/static
+    ports:
+      - "80:80"
+      - "443:443"
+
+   

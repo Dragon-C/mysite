@@ -48,9 +48,12 @@ class Post(models.Model):
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和 Category 类似。
     author = models.ForeignKey(User,on_delete=models.CASCADE)
 
+    views = models.PositiveIntegerField(default=0, editable=False)
+
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = verbose_name
+        ordering = ['-created_time']
     
     def __str__(self):
         return self.title
@@ -58,20 +61,28 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("blog:detail", kwargs={"pk": self.pk})
 
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
+
 
 class visitCount(models.Model):
 
-    count = models.IntegerField(default=0)
+    count = models.PositiveIntegerField(default=0, editable=False)
     print('count call:',count)
 
     def __str__(self):
         return str(self.count)
 
-    def save(self, *args, **kwargs):
+    def save(self,*args, **kwargs):
         self.count += 1
         super().save(*args, **kwargs)
-        print('count save:',self.count)
         return self.count
+
+    # def increase_views(self):
+    #     self.count += 1
+    #     self.save(update_fields=['count'])
+    #     return self.count
 
 
 

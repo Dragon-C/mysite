@@ -11,15 +11,18 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
  
  <!-- css -->
- <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}" rel="external nofollow" rel="external nofollow" >
+ {% comment %} <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}" > {% endcomment %}
+ <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="external nofollow" rel="external nofollow" rel="external nofollow" >
  <link rel="stylesheet" href="{% static 'blog/css/pace.css' %}" rel="external nofollow" rel="external nofollow" >
  <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}" rel="external nofollow" >
  <link href="https://cdn.bootcss.com/highlight.js/9.15.8/styles/github.min.css" rel="stylesheet">
  
  <!-- js -->
- <script src="{% static 'blog/js/jquery-2.1.3.min.js' %}"></script>
- <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+ {% comment %} <script src="{% static 'blog/js/jquery-2.1.3.min.js' %}"></script>
+ <script src="{% static 'blog/js/bootstrap.min.js' %}"></script> {% endcomment %}
+ <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+ <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script src="{% static 'blog/js/pace.min.js' %}"></script>
  <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
 
@@ -62,12 +65,13 @@
 </head>
 
 <body>
+
 <div class="container">
     <header id="site-header">
         <div class="row">
             <div class="col-md-4 col-sm-5 col-xs-8">
                 <div class="logo">
-                    <h1><a href="{% url 'blog:index' %}"><b>Black</b> &amp; White</a></h1>
+                    <h1><a href="{% url 'blog:index' %}"><b>灵感小筑</b> DragC</a></h1>
                 </div>
             </div><!-- col-md-4 -->
             <div class="col-md-8 col-sm-7 col-xs-4">
@@ -84,14 +88,25 @@
                             <li class="cl-effect-11"><a href="full-width.html" data-hover="博客">博客</a></li>
                             <li class="cl-effect-11"><a href="about.html" data-hover="关于">关于</a></li>
                             <li class="cl-effect-11"><a href="contact.html" data-hover="联系">联系</a></li>
+
+                        {% comment %} <li class="cl-effect-14"> 
+                        <a href="#"> 
+                        <form role="search" method="get" id="searchform" action="{% url 'blog:search' %}">
+                            <input type="search" name="q" placeholder="搜索" required>
+                            <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                        </form>
+                        </li>
+                        </a> {% endcomment %}
+
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
+                
                 <div id="header-search-box">
                     <a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
                     <div id="search-form" class="search-form">
-                        <form role="search" method="get" id="searchform" action="#">
-                            <input type="search" placeholder="搜索" required>
+                        <form role="search" method="get" id="searchform" action="{% url 'blog:search' %}">
+                            <input type="search" name="q" placeholder="搜索" required>
                             <button type="submit"><span class="ion-ios-search-strong"></span></button>
                         </form>
                     </div>
@@ -99,6 +114,17 @@
             </div><!-- col-md-8 -->
         </div>
     </header>
+
+{% comment %} {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        {{ message }}
+      </div>
+    {% endfor %}
+{% endif %} {% endcomment %}
+
 </div>
 <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">网页模板</a></div>
 <div class="copyrights">Modified by <a href="http://zmrenwu.com/">追梦人物的博客</a></div>
@@ -154,7 +180,7 @@
     </nav>
 </div>
 
-<script src="js/script.js"></script>
+<script src="{% static 'blog/js/script.js' %}"></script>
 
 <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
