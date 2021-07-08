@@ -2,6 +2,9 @@ FROM python:3.8-alpine
 
 ENV PYTHONUNBUFFERED 1
 
+#换国内源
+RUN echo -e http://mirrors.ustc.edu.cn/alpine/v3.14/main/ > /etc/apk/repositories
+
 RUN apk update \
   # Pillow dependencies
   && apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
