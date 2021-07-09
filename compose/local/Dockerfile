@@ -3,7 +3,7 @@ FROM python:3.8-alpine3.12
 ENV PYTHONUNBUFFERED 1
 
 #换国内源
-RUN echo -e http://mirrors.ustc.edu.cn/alpine/v3.14/main/ > /etc/apk/repositories
+RUN echo -e http://mirrors.ustc.edu.cn/alpine/v3.12/main/ > /etc/apk/repositories
 
 RUN apk update \
   # Pillow dependencies
