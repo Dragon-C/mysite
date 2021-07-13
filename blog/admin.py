@@ -10,8 +10,8 @@ from .models import Post,Category,Tag
 #     list_display = ['title', 'created_time', 'modified_time', 'category', 'author']
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_time', 'modified_time', 'category', 'author']
-    fields = ['title', 'body', 'excerpt', 'category', 'tags']
+    list_display = ['title', 'top_symbol', 'created_time', 'modified_time', 'category', 'author']
+    fields = ['title', 'body', 'picture', 'excerpt', 'category', 'tags', 'top_symbol']
 
     def save_model(self,request,obj,form,change):
         obj.author = request.user

@@ -1,4 +1,8 @@
-from django.urls import re_path, path
+from django import urls
+from django.urls import re_path, path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
 from .import views
 app_name='blog'
 
@@ -10,4 +14,8 @@ urlpatterns = [
     path('categories/<int:pk>', views.CategoryView.as_view(), name='category'),
     path("tag/<int:pk>", views.TagView.as_view(), name='tag'),
     path("search/", views.search, name='search'),
+    path("about/", views.AboutView.as_view(), name='about'),
+
 ]
+
+

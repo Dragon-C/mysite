@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     'blog.apps.BlogConfig',
     'comments.apps.CommentsConfig',
+    'ckeditor',
+    'ckeditor_uploader',
 
 ]
 
@@ -129,3 +131,46 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+CKEDITOR_UPLOAD_PATH = 'upload/'
+
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+CKEDITOR_CONFIGS = {
+    # 配置名是default时，django-ckeditor默认使用这个配置
+    'default': {
+        # 使用简体中文
+        'language':'zh-cn',
+        # 编辑器的宽高请根据你的页面自行设置
+        'width':'auto',
+        'height':'150px',
+        'image_previewText':' ',
+        'tabSpaces': 4,
+        'toolbar': 'Full',
+
+        # 插件
+        'extraPlugins': ','.join(['uploadimage',]),
+    }
+}
+
+# DJANGO_WYSIWYG_FLAVOR = "ckeditor"
+# CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+# CKEDITOR_RESTRICT_BY_USER = True #Only who upload image see it
+
+# CKEDITOR_BROWSE_SHOW_DIRS = True # Shows directory of image in the server
+# CKEDITOR_RESTRICT_BY_DATE = True # Arranges image in terms of date uploaded
+
+
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': None,
+#         'extraPlugins': 'codesnippet',
+#     },
+# }
+

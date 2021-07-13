@@ -40,6 +40,14 @@ def show_tags(context):
         'tag_list': tag_list,
     }
 
+@register.inclusion_tag('blog/inclusions/_toptags.html', takes_context=True)
+def top_tags(context):
+    tag_list = Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+    return {
+        'tag_list': tag_list,
+    }
+
+
 @register.inclusion_tag('blog/inclusions/_indexCount.html', takes_context=True)
 def get_counts(context):
     # request = context.get("request")

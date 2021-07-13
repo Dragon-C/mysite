@@ -1,0 +1,68 @@
+{% extends 'blog/base.html' %}
+{% load comments_extras %}
+ 
+ {% block main %}
+
+            {% for post in about_post %}
+                <article class="post post-1">
+                    {% comment %} <header class="entry-header">
+                        <h1 class="entry-title">{{ post.title }}</h1>
+                        <div class="entry-meta">
+                            <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+                            <span class="post-date"><a href="#"><time class="entry-date"
+                                                                      datetime="2012-11-09T23:15:57+00:00">{{ post.created_time }}</time></a></span>
+                            <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                            <span class="comments-link"><a href="#comment-area">{{ post.comment_set.count }} 评论</a></span>
+                            <span class="views-count"><a href="#">{{ post.views }} 阅读</a></span>
+                        </div>
+                    </header> {% endcomment %}
+                    <div class="entry-content clearfix">
+                    {{ post.body|safe|linebreaksbr }}
+
+                    </div>
+                </article>
+
+            {% endfor %}
+                {% comment %} <section class="comment-area" id="comment-area">
+                    <hr>
+                    <h3>发表评论</h3>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% block comment %}
+                    {% if failMark %}
+                        {% show_comment_form post form %}
+                    {% else %}
+                        {% show_comment_form post %}
+                    {% endif %}
+                    {% endblock comment %}
+                    
+                    <div class="comment-list-panel">
+                        {% show_comments post %}
+                    </div>
+                </section> {% endcomment %}
+{% endblock main %}
+{% block toc %}
+    {% if post.toc %}
+ 
+                <div class="widget widget-content">
+                    <h3 class="widget-title">文章目录</h3>
+                    <div class="toc">
+                    <ul>
+                       {{ post.toc|safe }}
+                    </ul>
+                    </div>
+                </div>
+    {% endif %}
+
+ 
+{% endblock toc %}
+     

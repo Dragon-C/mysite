@@ -1,8 +1,30 @@
 {% extends 'blog/base.html' %}
 
             {% block main %}
+
             {% for post in posts %}
                 <article class="post post-{{ post.pk }}">
+
+                {% if post.top_symbol and post.top_symbol > 0 %}
+                <div class="well">
+                    <header class="row">
+                        <h4 class="col-md-7">
+                            <a href="{{ post.get_absolute_url }}">【*置顶*】{{ post.title }}</a>
+                        </h4>
+                        <div class="col-md-5">
+                            <span class="post-date"><a href="#"><time class="entry-date"
+                                                                      datetime="2012-11-09T23:15:57+00:00">{{ post.created_time }}</time></a></span>
+                            <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                        </div>
+                        <div class="container:after"></div>
+                    </header>
+                
+                
+
+                </div>
+                    
+                {% else %}
+
                     <header class="entry-header">
                         <h1 class="entry-title">
                             <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
@@ -24,6 +46,9 @@
                         </div>
                     </div>
                 </article>
+
+                {% endif %}
+
                 {% empty %}
                     <div class="no-post">暂时还没有发布的文章！</div>
                 {% endfor %}

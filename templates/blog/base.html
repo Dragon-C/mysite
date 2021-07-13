@@ -29,6 +29,12 @@
  <!-- code highlight -->
  <style>
 
+    body {
+        background-image:url({% static 'blog/img/bg.jpeg' %});
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
     .codehilite {
       padding: 0;
     }
@@ -66,6 +72,8 @@
 
 <body>
 
+<div style="width:80%;margin:0 auto;background:rgba(255,255,255,0.9);">
+
 <div class="container">
     <header id="site-header">
         <div class="row">
@@ -85,9 +93,8 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="首页">首页</a></li>
-                            <li class="cl-effect-11"><a href="full-width.html" data-hover="博客">博客</a></li>
-                            <li class="cl-effect-11"><a href="about.html" data-hover="关于">关于</a></li>
-                            <li class="cl-effect-11"><a href="contact.html" data-hover="联系">联系</a></li>
+                            {% top_tags %}
+                            <li class="cl-effect-11"><a href={% url 'blog:about' %} data-hover="关于">关于</a></li>
 
                         {% comment %} <li class="cl-effect-14"> 
                         <a href="#"> 
@@ -126,8 +133,7 @@
 {% endif %} {% endcomment %}
 
 </div>
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/">网页模板</a></div>
-<div class="copyrights">Modified by <a href="http://zmrenwu.com/">追梦人物的博客</a></div>
+<div class="copyrights">&copy 2021 - DragC的博客 - 部署于树莓派</div>
 
 <div class="content-body">
     <div class="container">
@@ -140,15 +146,22 @@
             <aside class="col-md-4">
                 {% block toc %}{% endblock toc %}
 
+                <div class="content" style="width: 100%; background-color:#FFFFFF">
+
+                <div class="content" style="width: 90%; margin-left: 5%; margin-right: 5%;">
+
                 {% show_recent_posts %}
                 {% show_archives %}
                 {% show_categories %}
                 {% show_tags %}
 
-
-                <div class="rss">
-                    <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>
                 </div>
+                </div>
+
+
+                {% comment %} <div class="rss">
+                    <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                </div> {% endcomment %}
             </aside>
         </div>
     </div>
@@ -157,9 +170,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p class="copyright">&copy 2021 - 采集自<a href="http://www.cssmoban.com/"
-                                                        target="_blank" title="模板之家">模板之家</a>
-                    - 由<a href="http://zmrenwu.com/" title="网页模板" target="_blank">追梦人物的博客</a>修改
+                <p class="copyright">&copy 2021 - DragC的博客 - 部署于树莓派
                 </p>
                 {% get_counts %}
             </div>
@@ -173,11 +184,12 @@
     <nav>
         <ul>
             <li><a href="{% url 'blog:index' %}">首页</a></li>
-            <li><a href="full-width.html">博客</a></li>
-            <li><a href="about.html">关于</a></li>
-            <li><a href="contact.html">联系</a></li>
+            {% top_tags %}
+            <li><a href={% url 'blog:about' %}>关于</a></li>
         </ul>
     </nav>
+</div>
+
 </div>
 
 <script src="{% static 'blog/js/script.js' %}"></script>

@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 
+from ckeditor_uploader.fields import RichTextUploadingField
+
 # Create your models here.
 
 class Category(models.Model):
@@ -25,7 +27,11 @@ class Post(models.Model):
     
     # 文章正文，我们使用了 TextField。
     # 存储比较短的字符串可以使用 CharField，但对于文章的正文来说可能会是一大段文本，因此使用 TextField 来存储大段文本。
-    body = models.TextField()
+    body = RichTextUploadingField(config_name='default')
+
+    # 在models里添加picture字段
+    # upload_to 将图片上传到static文件下的images
+    picture = models.ImageField(upload_to='media',blank=True)
     
     # 这两个列分别表示文章的创建时间和最后一次修改时间，存储时间的字段用 DateTimeField 类型。
     created_time = models.DateTimeField('创建时间',default=timezone.now)
@@ -50,10 +56,12 @@ class Post(models.Model):
 
     views = models.PositiveIntegerField(default=0, editable=False)
 
+    top_symbol = models.IntegerField(default=0,blank=True)
+
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = verbose_name
-        ordering = ['-created_time']
+        ordering = ['-top_symbol','-created_time']
     
     def __str__(self):
         return self.title

@@ -153,3 +153,11 @@ def search(request):
 
     posts = Post.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
     return render(request,'blog/index.html',{'posts':posts})
+
+class AboutView(ListView):
+    model = Post
+    template_name = "blog/about.html"
+    context_object_name = "about_post"
+
+    def get_queryset(self):
+        return super(AboutView,self).get_queryset().filter(title="about")

@@ -91,6 +91,13 @@ img {
     max-width: 100%;
 }
 
+p img{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
 .img-responsive-center img {
     margin: 0 auto;
 }
