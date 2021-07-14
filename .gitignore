@@ -131,6 +131,7 @@ dmypy.json
 
 
 /media/upload/
+/media/editor/
 /blogproject/settings/local.py
 /blogproject/settings/test.py
 /compose/production/nginx/ssh/
