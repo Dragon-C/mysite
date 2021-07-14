@@ -10,6 +10,7 @@ gunicorn = "*"
 psycopg2-binary = "*"
 pillow = "*"
 django-ckeditor = "*"
+django-mdeditor = "*"
 
 [dev-packages]
 

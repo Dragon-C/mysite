@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from ckeditor_uploader.fields import RichTextUploadingField
+from mdeditor.fields import MDTextField
 
 # Create your models here.
 
@@ -27,7 +28,9 @@ class Post(models.Model):
     
     # 文章正文，我们使用了 TextField。
     # 存储比较短的字符串可以使用 CharField，但对于文章的正文来说可能会是一大段文本，因此使用 TextField 来存储大段文本。
-    body = RichTextUploadingField(config_name='default')
+    # body = RichTextUploadingField(config_name='default')
+    # body = models.TextField()
+    body = MDTextField()
 
     # 在models里添加picture字段
     # upload_to 将图片上传到static文件下的images
@@ -76,7 +79,7 @@ class Post(models.Model):
 
 class visitCount(models.Model):
 
-    count = models.PositiveIntegerField(default=0, editable=False)
+    count = models.PositiveIntegerField(default=0, editable=True)
     print('count call:',count)
 
     def __str__(self):
@@ -91,6 +94,11 @@ class visitCount(models.Model):
     #     self.count += 1
     #     self.save(update_fields=['count'])
     #     return self.count
+
+class viewIP(models.Model):
+    ip = models.CharField('访问者IP',max_length=64)
+    view_time = models.DateTimeField('访问时间', default=timezone.now)
+
 
 
 

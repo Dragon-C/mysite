@@ -25,6 +25,9 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('comments.urls')),
     re_path(r"^ckeditor/", include('ckeditor_uploader.urls')),
+    re_path(r"mdeditor/", include('mdeditor.urls')),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

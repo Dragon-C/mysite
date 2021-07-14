@@ -1,7 +1,8 @@
 from django.contrib import admin
+from django.contrib.admin.options import ModelAdmin
 from django.utils import timezone
 
-from .models import Post,Category,Tag
+from .models import Post,Category,Tag,visitCount,viewIP
 
 # Register your models here.
 
@@ -18,7 +19,17 @@ class PostAdmin(admin.ModelAdmin):
         obj.modified_time = timezone.now()
         super().save_model(request,obj,form,change)
 
+class visitCountAdmin(admin.ModelAdmin):
+    list_display = ['count']
+    fields = ['count']
+
+class viewIPAdmin(admin.ModelAdmin):
+    list_display = ['ip','view_time']
+    fields = ['ip','view_time']
+
 admin.site.register(Post,PostAdmin)
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(visitCount,visitCountAdmin)
+admin.site.register(viewIP,viewIPAdmin)
 

@@ -9,7 +9,7 @@ class CommentsConfig(AppConfig):
     verbose_name = '评论'
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['name','email','url','post','created_time']
-    fields = ['name','email','url','post']
+    list_display = ['name','email','url','post','created_time','text']
+    fields = ['name','email','url','post','text']
 
 admin.site.register(Comment,CommentAdmin)
