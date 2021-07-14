@@ -64,6 +64,32 @@
       padding-left: 10px;
       white-space: pre;
     }
+
+    .outer{
+        margin:0 auto;
+        background:rgba(255,255,255,0.9);
+    }
+
+    @media screen and (min-width: 1481px){
+        .outer {width:80%;}
+    }
+
+    @media screen and (max-width: 1480px){
+        .outer {width:1170px;}
+    }
+
+    @media screen and (max-width: 1200px){
+        .outer {width:90%;}
+    }
+
+    @media screen and (max-width: 1110px){
+        .outer {width:990px;}
+    }
+
+    @media screen and (max-width: 990px){
+        .outer {width:95%;}
+    }
+
   </style>
 
 
@@ -72,7 +98,7 @@
 
 <body>
 
-<div style="width:80%;margin:0 auto;background:rgba(255,255,255,0.9);">
+<div class="outer">
 
 <div class="container">
     <header id="site-header">
