@@ -43,11 +43,12 @@ def show_tags(context):
         'tag_list': tag_list,
     }
 
-@register.inclusion_tag('blog/inclusions/_toptags.html', takes_context=True)
-def top_tags(context):
-    tag_list = Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+@register.inclusion_tag('blog/inclusions/_topcates.html', takes_context=True)
+def top_cates(context):
+    category_list = Category.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
     return {
-        'tag_list': tag_list,
+        'category_list': category_list,
+        
     }
 
 

@@ -119,7 +119,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="首页">首页</a></li>
-                            {% top_tags %}
+                            {% top_cates %}
                             <li class="cl-effect-11"><a href={% url 'blog:about' %} data-hover="关于">关于</a></li>
 
                         {% comment %} <li class="cl-effect-14"> 
@@ -210,7 +210,7 @@
     <nav>
         <ul>
             <li><a href="{% url 'blog:index' %}">首页</a></li>
-            {% top_tags %}
+            {% top_cates %}
             <li><a href={% url 'blog:about' %}>关于</a></li>
         </ul>
     </nav>
