@@ -87,7 +87,7 @@
     }
 
     @media screen and (max-width: 990px){
-        .outer {width:95%;}
+        .outer {width:100%;}
     }
 
   </style>
@@ -208,7 +208,7 @@
 <div class="overlay overlay-hugeinc">
     <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
     <nav>
-        <ul>
+        <ul class="">
             <li><a href="{% url 'blog:index' %}">首页</a></li>
             {% top_cates %}
             <li><a href={% url 'blog:about' %}>关于</a></li>
