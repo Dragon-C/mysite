@@ -6,13 +6,13 @@ from .common import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mysite',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': 'postgres',https://github.com/Dragon-C/mysite/blob/master/blogproject/settings/test.py
         'USER': 'postgres',
-        'PASSWORD': 'root123',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
+
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
