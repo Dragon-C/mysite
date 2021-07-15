@@ -4,6 +4,7 @@ volumes:
   static:
   database:
   postgres_data:
+  media:
 
 services:
   db:
@@ -21,6 +22,7 @@ services:
     volumes:
       - database:/app/database
       - static:/app/static
+      - media:/app/media
     env_file:
       - .envs/.production
     ports:
@@ -37,6 +39,7 @@ services:
     container_name: mysite_nginx
     volumes:
       - static:/apps/mysite/static
+      - media:/apps/mysite/media
     ports:
       - "80:80"
       - "443:443"
