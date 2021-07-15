@@ -135,3 +135,4 @@ dmypy.json
 /blogproject/settings/local.py
 /blogproject/settings/test.py
 /compose/production/nginx/ssh/
+blogproject/settings/test.py
