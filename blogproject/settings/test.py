@@ -6,11 +6,10 @@ from .common import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mysite',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'root123',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
