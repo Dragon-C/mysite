@@ -71,15 +71,17 @@ def get_counts(context):
     now_time = timezone.now()
     count = 0
 
-    # if 'HTTP_X_FORWARDED_FOR' in request.META:        # 获取用户真实IP地址
-    #     user_ip = request.META['HTTP_X_FORWARDED_FOR']
-    # else:
-    #     user_ip = request.META['REMOTE_ADDR']
+    if 'HTTP_X_FORWARDED_FOR' in request.META:        # 获取用户真实IP地址
+        user_ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        user_ip = request.META['REMOTE_ADDR']
 
-    user_ip = request.META['REMOTE_ADDR']
     
     print('user_ip',user_ip)
 
+    request_meta = request.META
+    for k, v in request_meta.items():
+        print(k,v)
 
     if viewIP.objects.filter(ip=user_ip).exists():             # 检查目前浏览的IP是否在表中存在
         obj = viewIP.objects.filter(ip=user_ip).first()
