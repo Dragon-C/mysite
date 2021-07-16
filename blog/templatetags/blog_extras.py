@@ -71,10 +71,12 @@ def get_counts(context):
     now_time = timezone.now()
     count = 0
 
-    if 'HTTP_X_FORWARDED_FOR' in request.META:        # 获取用户真实IP地址
-        user_ip = request.META['HTTP_X_FORWARDED_FOR']
-    else:
-        user_ip = request.META['REMOTE_ADDR']
+    # if 'HTTP_X_FORWARDED_FOR' in request.META:        # 获取用户真实IP地址
+    #     user_ip = request.META['HTTP_X_FORWARDED_FOR']
+    # else:
+    #     user_ip = request.META['REMOTE_ADDR']
+
+    user_ip = request.META['HTTP_USER_AGENT']
 
     
     print('user_ip',user_ip)
