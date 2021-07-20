@@ -67,7 +67,7 @@ def get_counts(context):
     request = context.get("request")
 
     recount_interval = 3600   # 单个IP重新计算浏览量的间隔时间
-    del_interval = 7200       # 清除表中旧IP的间隔时间
+    del_interval = 86400       # 清除表中旧IP的间隔时间
     now_time = timezone.now()
     count = 0
 
@@ -98,9 +98,9 @@ def get_counts(context):
         viewIP.objects.create(ip=user_ip,view_time=now_time)
 
 
-    last_time = viewIP.objects.all().order_by('view_time').values('view_time')[0]['view_time']
+    last_time = viewIP.objects.all().order_by('view_time').values('view_time')[0]['view_time']    # 获取IP表最早一条记录的时间
     if (now_time - last_time).seconds > del_interval:
-        due_time = now_time - timedelta(seconds=recount_interval)
+        due_time = now_time - timedelta(seconds=recount_interval)                                 # 距现时间大于一定间隔时，算出时限，把比这个时限早的记录删除
         viewIP.objects.filter(view_time__lt=due_time).delete()
 
     if count:

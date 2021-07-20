@@ -96,7 +96,7 @@ class visitCount(models.Model):
     #     return self.count
 
 class viewIP(models.Model):
-    ip = models.CharField('访问者IP',max_length=64)
+    ip = models.CharField('访问者IP',max_length=500)
     view_time = models.DateTimeField('访问时间', default=timezone.now)
 
 
